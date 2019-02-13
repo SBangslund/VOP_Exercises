@@ -9,3 +9,4 @@ Exercises:
 - [VOP_02C - Write to text](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_02C)
 - [VOP_02D - ConvertToDoubles](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_02D)
 - [VOP-02E - Danish islands](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_02E)
+- [VOP_02F - Replace](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_02F)
