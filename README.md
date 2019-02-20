@@ -18,3 +18,4 @@ Exercises:
 ---
 ### Lesson 03
 - [VOP_03A - Person / TextAnalyze](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_03A/src)
+- [VOP_03B - Mountains](https://github.com/SBangslund/VOP_Exercises/tree/master/VOP_03B)
