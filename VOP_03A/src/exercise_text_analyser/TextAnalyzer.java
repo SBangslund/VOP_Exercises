@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class TextAnalyzer {
 
@@ -23,9 +24,7 @@ public class TextAnalyzer {
         Set<String> set = sorted ? new TreeSet<>() : new HashSet<>();
 
         try (Scanner scanner = new Scanner(file)) {
-            scanner.forEachRemaining(word -> {
-                set.add(clean(word));
-            });
+            scanner.forEachRemaining(word -> set.add(clean(word)));
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + file.getAbsolutePath());
         }
@@ -57,14 +56,15 @@ public class TextAnalyzer {
 
         try (Scanner scanner = new Scanner(file)) {
             scanner.forEachRemaining(word -> {
-                word = clean(word);
-                if (!mapOfSets.containsKey(word.length())) {
+                final String cleanWord = clean(word);
+                mapOfSets.compute(cleanWord.length(), (t, u) -> {
                     Set<String> set = new TreeSet<>();
-                    set.add(clean(word));
-                    mapOfSets.put(word.length(), set);
-                } else {
-                    mapOfSets.get(word.length()).add(word);
-                }
+                    if (u == null) return set;
+                    
+                    set.addAll(mapOfSets.get(cleanWord.length()));
+                    set.add(cleanWord);
+                    return set;
+                });
             });
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + file.getAbsolutePath());

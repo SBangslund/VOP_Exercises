@@ -1,9 +1,9 @@
 package comparable_exercise;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Person implements Comparable<Person> {
 
@@ -40,16 +40,9 @@ public class Person implements Comparable<Person> {
         list.add(new Person("A", "BB", 1980, 3, 10, 1.67));
         list.add(new Person("A", "BB", 1980, 3, 1, 1.66));
         list.add(new Person("A", "CC", 1980, 3, 1, 1.65));
-
-        System.out.println(list);
-
-        Collections.sort(list);
-        System.out.println("\nsorted:\n" + list);
-
-        Collections.sort(list, (Person o1, Person o2) -> {
-            return (o1.height > o2.height) ? 1 : (o1.height == o2.height) ? 0 : -1;
-        });
-        System.out.println("\nsorted:\n" + list);
-
+        
+        System.out.println("\nUnsorted\n" + list);
+        System.out.println("\nSorted\n" + list.stream().sorted().collect(Collectors.toList()));
+        System.out.println("\nSorted\n" + list.stream().sorted((p1, p2) -> Double.compare(p2.height, p1.height)).collect(Collectors.toList()));
     }
 }
